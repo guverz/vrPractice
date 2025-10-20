@@ -28,18 +28,18 @@
       <asset-item id="deer" src="assets/low_poly_deer.glb"></asset-item>
     </a-assets>
     <!-- 3D models -->
-    <a-entity id="treeModel" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="21 0.5 -40">
+    <a-entity id="treeModel" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="21 0.5 -23.65063">
       <!-- Вместо кривого куба коллизии модели кастомный куб -->
       <a-box id="collisionBoxTree" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
     </a-entity>
     <a-entity id="rabbitModel" gltf-model="#rabbit" animation-mixer="clip: Armature.001|Idle; loop: repeat"scale="0.3 0.3 0.3" position="-3 0.5 -10" rotation="0 -15 0" class="collision"></a-entity>
-    <a-entity id="deerModel" gltf-model="#deer" animation-mixer="clip: Armature|Eat; loop: repeat" scale="1 1 1" position="20 0.5 -45" rotation="0 15 0" class="collision"></a-entity>
+    <a-entity id="deerModel" gltf-model="#deer" animation-mixer="clip: Armature|Eat; loop: repeat" scale="1 1 1" position="20 0.5 -26.58501" rotation="0 15 0" class="collision"></a-entity>
     
     <!-- Поверхности (лёд/снег/туман) -->
     <a-plane id="lakeSurface" geometry="primitive: box" rotation="-90 0 0" width="60" height="60"
              material="color: #9cc6ec; roughness: 0.7; metalness: 1; opacity: 0.6; transparent: true; depthTest: true; side: double"
-             position="0 0 35"></a-plane>
-    <a-plane id="groundSurface" scale="1 1 2" geometry="primitive: box" rotation="-90 0 0" width="60" height="60"
+             position="0 0 50"></a-plane>
+    <a-plane id="groundSurface" scale="1 1 1" geometry="primitive: box; depth: 2; height: 90" rotation="-90 0 0" width="60" height="60"
              material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 1; transparent: true; fog: false"
              position="0 -0.4816 -25"></a-plane>
     <a-plane id="fogSurface0" scale="10 15 5" geometry="primitive: sphere; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
@@ -67,16 +67,39 @@
       <a-box id="lilrock4" geometry="width: 8; height: 15; depth: 6" material="color: #7c756e" position="0.23492 -1.90914 7.66073" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
     </a-box>
 
-    <a-box id="miniWood1" geometry="width: 8; height: 3; depth: 8" material="color: #4c5a3a" position="4.60838 0.8 -28.45094" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
-    <a-box id="miniWood2" geometry="width: 8; height: 3; depth: 6" material="color: #4c5a3a" position="-7.20349 -0.13282 -29.43148" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
     <a-cone id="rock1" geometry="radiusBottom: 10; segmentsHeight: 18; height: 30; segmentsRadial: 4" geometry= "segmentsRadial: 4" scale="1 1 0.5" material="color: #7c756e; flatShading: true" position="-12 14 -55" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-cone>
-    
+    <a-cone id="rock2" geometry="radiusBottom: 10; segmentsHeight: 18; height: 21; segmentsRadial: 4" geometry= "segmentsRadial: 4" scale="1 1 0.7" material="color: #7c756e; flatShading: true" position="13.67606 10.81715 -52.3457" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-cone>
 
-    <!-- Дерево -->
-    <a-cylinder id="treeTrunk1" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-4 1 -10" radius="0.2" height="2" color="#5a381e" class="collision">
-      <a-cone id="treeLeaves1" material="color: #466755; roughness: 0.85" scale="1 5 1" geometry="segmentsWidth: 3; segmentsRadial: 3" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
+    <!-- Типа чаща из далека -->
+    <a-box id="miniWood1" rotation="0 0 0" geometry="width: 8; height: 10; depth: 8" material="color: #4c5a3a" position="4.02364 -3.38763 -29.35228" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
+    <a-box id="miniWood2" geometry="width: 8; height: 3; depth: 6" material="color: #4c5a3a" position="-7.20349 -0.13282 -29.43148" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
+
+    <!-- Деревья -->
+    <a-cylinder id="treeTrunk1" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-8.76446 1 -24.09229" radius="0.2" height="2" color="#5a381e" class="collision">
+      <a-cone id="treeLeaves1" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
+    </a-cylinder>
+    <a-cylinder id="treeTrunk2" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-6.04191 1 -20.15475" radius="0.2" height="2" color="#5a381e" class="collision">
+      <a-cone id="treeLeaves2" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
+    </a-cylinder>
+    <a-cylinder id="treeTrunk3" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="4.17304 1 -21.35939" radius="0.2" height="2" color="#5a381e" class="collision">
+      <a-cone id="treeLeaves3" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
+    </a-cylinder>
+    <a-cylinder id="treeTrunk4" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="9.71894 1 -22.3125" radius="0.2" height="2" color="#5a381e" class="collision">
+      <a-cone id="treeLeaves4" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
+    </a-cylinder>
+    <a-cylinder id="treeTrunk5" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="6.87173 1 -18.40522" radius="0.2" height="2" color="#5a381e" class="collision">
+      <a-cone id="treeLeaves5" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
 
+    <!-- Кубы коллизии/границы -->
+     <a-box id="cllsnCube0" geometry="height: 5; width: 1; depth: 130" position="30 3 25.76562" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube1" geometry="height: 5; width: 30; depth: 1" position="16.21193 3 -38.47529" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube2" geometry="height: 5; width: 20; depth: 1" position="-23.11438 3 -43.09944" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube3" geometry="height: 5; width: 1; depth: 130" position="-30 3 21.56421" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube4" geometry="height: 5; width: 60; depth: 1" position="0 3 86.47475" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube5" geometry="height: 5; width: 10; depth: 8" position="-1.54505 17.31806 -27.86194" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube6" geometry="height: 5; width: 10; depth: 8" position="-1.54505 18.45354 -14.39617" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube7" geometry="height: 5; width: 10; depth: 8" position="-1.54505 19.92326 -1.86539" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
     <!-- Камера -->
     <a-entity id="rig" position="0 1.7 0">
       <a-entity id="playerCam"
