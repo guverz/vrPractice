@@ -8,7 +8,9 @@
   <script src="lib/RGBELoader.js"></script>
   <script src="https://cdn.jsdelivr.net/gh/donmccurdy/aframe-extras@6.1.1/dist/aframe-extras.min.js"></script>
   
+  <script src="lib/path-walker.js"></script>
   <script src="lib/reset-on-collision.js"></script>
+
   <script src="components/aframe-orbit-controls.js"></script>
   <script src="components/aframe-env-map-component.js"></script>
   <script src="components/aframe-hdr-environment.js"></script>
@@ -26,14 +28,35 @@
       <asset-item id="tree" src="assets/low_poly_tree_wind.glb"></asset-item>
       <asset-item id="rabbit" src="assets/low_poly_rabbit.glb"></asset-item>
       <asset-item id="deer" src="assets/low_poly_deer.glb"></asset-item>
+      <asset-item id="rock1" src="assets/rock2.glb"></asset-item>
     </a-assets>
     <!-- 3D models -->
-    <a-entity id="treeModel" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="21 0.5 -23.65063">
+    <a-entity id="treeModel0" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="-19.35115 0.5 -35.61047">
       <!-- Вместо кривого куба коллизии модели кастомный куб -->
-      <a-box id="collisionBoxTree" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
+      <a-box id="collisionBoxTree0" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
     </a-entity>
-    <a-entity id="rabbitModel" gltf-model="#rabbit" animation-mixer="clip: Armature.001|Idle; loop: repeat"scale="0.3 0.3 0.3" position="-3 0.5 -10" rotation="0 -15 0" class="collision"></a-entity>
-    <a-entity id="deerModel" gltf-model="#deer" animation-mixer="clip: Armature|Eat; loop: repeat" scale="1 1 1" position="20 0.5 -26.58501" rotation="0 15 0" class="collision"></a-entity>
+    <a-entity id="treeModel1" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="-14.76294 0.5 -19.88712">
+      <a-box id="collisionBoxTree1" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
+    </a-entity>
+    <a-entity id="treeModel2" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="22.34124 0.5 -28.73714">
+      <a-box id="collisionBoxTree2" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
+    </a-entity>
+    
+    <!-- <a-entity id="rockModel1" gltf-model="#rock1"visible="false" class="collision"></a-entity> -->
+    <a-entity id="rabbitModel" gltf-model="#rabbit" scale="0.3 0.3 0.3" class="collision"
+              path-walker="
+              clip: Armature.001|Run;
+              idleClip: Armature.001|Idle;
+              path: [[5,0.5,-15],[11,0.5,-15],[11,0.5,-9],[5,0.5,-9],[5,0.5,-15]];
+              speed: 2.5;
+              restTime: 6;"></a-entity>
+    <a-entity id="deerModel" gltf-model="#deer" scale="1 1 1" class="collision"
+              path-walker="
+              clip: Armature|Walk;
+              idleClip: Armature|Eat;
+              path: [[0,0.5,0],[3,0.5,0],[3,0.5,3],[0,0.5,0]];
+              speed: 1.5;
+              restTime: 10;"></a-entity>
     
     <!-- Поверхности (лёд/снег/туман) -->
     <a-plane id="lakeSurface" geometry="primitive: box" rotation="-90 0 0" width="60" height="60"
@@ -42,18 +65,36 @@
     <a-plane id="groundSurface" scale="1 1 1" geometry="primitive: box; depth: 2; height: 90" rotation="-90 0 0" width="60" height="60"
              material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 1; transparent: true; fog: false"
              position="0 -0.4816 -25"></a-plane>
-    <a-plane id="fogSurface0" scale="10 15 5" geometry="primitive: sphere; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
+
+    <a-plane id="fogSurface0" scale="10 5 10" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60"
              material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true"
-             position="-10.56024 7.05674 -36.84164"></a-plane>
-    <a-plane id="fogSurface1" scale="15 10 5" geometry="primitive: sphere; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
+             path-walker="
+             path: [[-10.5,7,-37],[-10.5,7.5,-37],[-10.5,7,-37]];
+             speed: 0.15;
+             restTime: 0;
+             lookAt: false; 
+              "></a-plane>
+    <a-plane id="fogSurface1" scale="15 5 10" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60"
              material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true"
-             position="-3.55765 15.18178 -44.31926"></a-plane> 
-    <a-plane id="fogSurface2" scale="12 12 5" geometry="primitive: sphere; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
-             material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true"
-             position="10.40466 7.9516 -36.57555"></a-plane>
+             path-walker="
+             path: [[-3.5,18,-44.5],[-3.5,17,-44.5],[-3.5,18,-44.5]];
+             speed: 0.2;
+             restTime: 0;
+             lookAt: false;             
+              "></a-plane> 
+    <a-plane id="fogSurface2" scale="12 5 12" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60"
+             material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true"             
+             path-walker="
+             path: [[10.5,8,-36.5],[10.5,8.5,-36.5],[10.5,8,-36.5]];
+             speed: 0.15;
+             restTime: 0;
+             lookAt: false;
+              "></a-plane>
+
+    
     <a-plane id="fogWater" visible="true" scale="1 1 5" geometry="primitive: box; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
              material="color: #b8d7ff; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true; visible: true; side: double; depthTest: true; depthWrite: true; fog: true; flatShading: false"
-             position="0 3.5 65.59598"></a-plane>
+             position="0 3.5 67.93505"></a-plane>
     <a-plane id="water" scale="1 1 5" geometry="primitive: box; segmentsWidth: 6" rotation="-90 0 0" width="60" height="60"
              material="color: #6babff; roughness: 0.8; metalness: 0.2; opacity: 1; transparent: false; visible: true; alphaTest: 0; fog: true; side: double"
              position="0 -3 35"></a-plane>                                                                     
@@ -94,12 +135,13 @@
     <!-- Кубы коллизии/границы -->
      <a-box id="cllsnCube0" geometry="height: 5; width: 1; depth: 130" position="30 3 25.76562" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
      <a-box id="cllsnCube1" geometry="height: 5; width: 30; depth: 1" position="16.21193 3 -38.47529" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube2" geometry="height: 5; width: 20; depth: 1" position="-23.11438 3 -43.09944" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube2" geometry="height: 5; width: 17; depth: 1" position="-21.9739 3 -43.09944" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
      <a-box id="cllsnCube3" geometry="height: 5; width: 1; depth: 130" position="-30 3 21.56421" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube4" geometry="height: 5; width: 60; depth: 1" position="0 3 86.47475" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube5" geometry="height: 5; width: 10; depth: 8" position="-1.54505 17.31806 -27.86194" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube4" geometry="height: 5; width: 60; depth: 1" position="0 3 56.8787" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+
+     <!-- <a-box id="cllsnCube5" geometry="height: 5; width: 10; depth: 8" position="-1.54505 17.31806 -27.86194" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
      <a-box id="cllsnCube6" geometry="height: 5; width: 10; depth: 8" position="-1.54505 18.45354 -14.39617" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube7" geometry="height: 5; width: 10; depth: 8" position="-1.54505 19.92326 -1.86539" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
+     <a-box id="cllsnCube7" geometry="height: 5; width: 10; depth: 8" position="-1.54505 19.92326 -1.86539" depth="2" width="10" height="4" visible="false" class="collision"></a-box> -->
     <!-- Камера -->
     <a-entity id="rig" position="0 1.7 0">
       <a-entity id="playerCam"
