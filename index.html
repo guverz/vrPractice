@@ -25,23 +25,59 @@
   
   <a-scene light="defaultLightsEnabled: false" hdr-environment="url: assets/skybox2.hdr; showBackground: true; showGround: true; groundSize: 1500">
     <a-assets> 
-      <!-- <asset-item id="tree" src="assets/low_poly_tree_wind.glb"></asset-item> -->
       <asset-item id="rabbit" src="assets/low_poly_rabbit.glb"></asset-item>
       <asset-item id="deer" src="assets/low_poly_deer.glb"></asset-item>
+      <asset-item id="deadTrees" position="22 0.5 -31.59072" rotation="0 15 0" scale="0.6 0.6 0.6" src="assets/psx_dead_tree_pack.glb"></asset-item>
+      <asset-item id="Trees" src="assets/psx_style_trees.glb"></asset-item>
+      <asset-item id="pineTree" src="assets/ps1low_poly_pine_tree.glb"></asset-item>
+      <!-- <asset-item id="mountain1" src="assets/low_poly_mountain_free.glb"></asset-item> -->
+      <!-- <asset-item id="mountain2" src="assets/low_poly_mountain.glb"></asset-item> -->
       <!-- <asset-item id="rock1" src="assets/rock2.glb"></asset-item> -->
     </a-assets>
     <!-- 3D models -->
-    <!-- <a-entity id="treeModel0" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="-19.35115 0.5 -35.61047"> -->
-      <!-- Вместо кривого куба коллизии модели кастомный куб -->
-      <!-- <a-box id="collisionBoxTree0" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
-    </a-entity> -->
-    <!-- <a-entity id="treeModel1" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="-14.76294 0.5 -19.88712">
-      <a-box id="collisionBoxTree1" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
-    </a-entity> -->
-    <!-- <a-entity id="treeModel2" gltf-model="#tree" animation-mixer="loop: repeat" scale="0.04 0.05 0.015" position="22.34124 0.5 -28.73714">
-      <a-box id="collisionBoxTree2" scale="1.5 1.5 1.5" position="0 38 0" depth="50" height="75" width="20" visible="false" class="collision"></a-box> 
-    </a-entity> -->
-    
+    <!-- <a-entity id="mountains0" gltf-model="#mountain1" scale="1 1 1" position="0 0.5 0"> -->
+      <!-- <a-box id="collisionPineTree" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  -->
+    <!-- </a-entity>  -->
+    <!-- <a-entity id="mountains1" gltf-model="#mountain2" scale=".1 .1 .1" position="0 0.5 0"> -->
+      <!-- <a-box id="collisionPineTree" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  -->
+    <!-- </a-entity>  -->
+    <a-entity id="deadTrees" rotation="0 -25 0" gltf-model="#deadTrees" scale=".6 .6 .6" position="22 0.5 -29">
+      <a-box id="collisionTree1" geometry="depth: 2; height: 7; width: 2" position="0 3 -3.75"  visible="false" class="collision"></a-box>
+      <a-box id="collisionTree2" geometry="depth: 2; height: 7; width: 2" position="0 3 7.1"  visible="false" class="collision"></a-box> 
+      <a-box id="collisionTree3" geometry="depth: 2.5; height: 7; width: 2.5" position="7.2 3 -3.75" visible="false" class="collision"></a-box> 
+      <a-box id="collisionTree4" geometry="depth: 2.5; height: 7; width: 2.5" position="7.16 3 7.1" visible="false" class="collision"></a-box> 
+      <a-box id="collisionTree5" geometry="depth: 2; height: 7; width: 2" position="-7.8 3 7.45" visible="false" class="collision"></a-box> 
+      <a-box id="collisionTree6" geometry="depth: 2; height: 7; width: 2" position="-7.65 3 -3.6" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="trees0" rotation="0 -45 0" gltf-model="#Trees" scale="1 1 1" position="-10.24596 0.2 -25.10024">
+      <a-box id="collisionTrees1" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
+      <a-box id="collisionTrees2" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="trees1" rotation="0 30 0" gltf-model="#Trees" scale="1 1 1" position="19.04469 0.2 -14.37565">
+      <a-box id="collisionTrees3" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
+      <a-box id="collisionTrees4" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="trees2" rotation="0 -25 0" gltf-model="#Trees" scale="1 1 1" position="-18.69698 0.2 -24.47794">
+      <a-box id="collisionTrees5" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
+      <a-box id="collisionTrees6" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="trees3" rotation="0 15 0" gltf-model="#Trees" scale="1 1 1" position="7.52871 0.2 -23.17501">
+      <a-box id="collisionTrees7" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
+      <a-box id="collisionTrees8" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="treeModel1" gltf-model="#pineTree" scale="1 1 1" position="6.12203 0.5 -5.20774">
+      <a-box id="collisionPineTree1" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box> 
+    </a-entity>
+    <a-entity id="treeModel2" gltf-model="#pineTree" scale="1 1 1" position="22.32538 0.5 -7.65229">
+      <a-box id="collisionPineTree2" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box> 
+    </a-entity>
+    <a-entity id="treeModel3" gltf-model="#pineTree" scale="1 1 1" position="-15.83862 0.5 -12.36113">
+      <a-box id="collisionPineTree3" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box> 
+    </a-entity>
+    <a-entity id="treeModel4" gltf-model="#pineTree" scale="1 1 1" position="-26.54943 0.5 0">
+      <a-box id="collisionPineTree4" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box> 
+    </a-entity>
+
     <!-- <a-entity id="rockModel1" gltf-model="#rock1"visible="false" class="collision"></a-entity> -->
     <a-entity id="rabbitModel" gltf-model="#rabbit" scale="0.3 0.3 0.3" class="collision"
               path-walker="
@@ -119,64 +155,64 @@
     <a-plane id="bigWood2" position="-46 4.5 -15" scale="15 5 40" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60" material="color: #5c7a65; roughness: 0.8; metalness: 0.2; visible: true"></a-plane>
     
     <!-- Деревья -->
-    <a-cylinder id="treeTrunk1" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-8.76446 1 -24.09229" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk1" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-25.4595 1 -24.09229" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves1" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk2" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-6.04191 1 -20.15475" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk2" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-28.92232 1 -20.15475" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves2" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk3" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="4.17304 1 -21.35939" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk3" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-31.85847 1 -30.51229" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves3" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk4" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="9.71894 1 -22.3125" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk4" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="26.19162 1 -22.3125" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves4" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk5" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="6.87173 1 -18.40522" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk5" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-21.61459 1 -15.3492" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves5" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk6" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-8.76446 1 -17.61712" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk6" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-24.76996 1 -17.61712" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves6" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk7" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-6.04191 1 -15.65432" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk7" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-28.77581 1 -15.65432" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves7" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk8" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="4.17304 1 -13.5815" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk8" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="27.75885 1 -13.5815" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves8" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk9" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="9.71894 1 -17.53389" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk9" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="30.43675 1 -17.53389" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves9" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk10" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="6.87173 1 -12.58104" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk10" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="25.7193 1 -12.58104" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves10" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk11" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-8.76446 1 -11.43092" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk11" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-27.96648 1 -11.43092" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves11" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk12" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-6.04191 1 -10.81331" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk12" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-24.46537 1 -10.81331" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves12" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk13" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="4.17304 1 -9.38189" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk13" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="30.10563 1 -9.38189" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves13" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk14" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="9.71894 1 -13.51645" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk14" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="31.09125 1 -13.51645" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves14" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk15" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="6.87173 1 -7.46494" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk15" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="27.67458 1 -7.46494" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves15" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk16" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-8.76446 1 -6.87187" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk16" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-29.8556 1 -6.87187" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves16" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk17" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-6.04191 1 -5.96113" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk17" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-26.49831 1 -5.96113" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves17" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk18" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="4.17304 1 -4.1135" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk18" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="-33.6472 1 -4.1135" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves18" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk19" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="9.71894 1 -5.82688" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk19" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="31.82981 1 -5.82688" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves19" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
-    <a-cylinder id="treeTrunk20" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="6.87173 1 -1.94234" radius="0.2" height="2" color="#5a381e" class="collision">
+    <a-cylinder id="treeTrunk20" material="color: #4e443b; roughness: 0.85" geometry="segmentsRadial: 3" position="29.87786 1 -1.94234" radius="0.2" height="2" color="#5a381e" class="collision">
       <a-cone id="treeLeaves20" material="color: #466755; roughness: 0.85" scale="1 1 1" geometry="segmentsWidth: 3; segmentsRadial: 3; height: 5" position="0 3.5 0" radius="1" color="#2e8b57"></a-cone>
     </a-cylinder>
     <!-- Кубы коллизии/границы -->
