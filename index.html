@@ -10,6 +10,8 @@
   <script src="lib/RGBELoader.js"></script>
   <script src="lib/path-walker.js"></script>
   <script src="lib/reset-on-collision.js"></script>
+  <script src="lib/snowfall.js"></script>
+
 
   <script src="components/aframe-orbit-controls.js"></script>
   <script src="components/aframe-env-map-component.js"></script>
@@ -23,11 +25,18 @@
 <body>
   <div class="hint">WASD + мышь для управления. Ctrl+Alt+I — инспектор.</div>
   
-  <a-scene light="defaultLightsEnabled: false" hdr-environment="url: assets/skybox2.hdr; showBackground: true; showGround: true; groundSize: 1500">
+  <a-scene light="defaultLightsEnabled: false" hdr-environment="url: assets/skybox2.hdr; showBackground: true; showGround: true; groundSize: 1500"
+      snowfall="
+      count: 2000; 
+      area: 70 60; 
+      height: 25; 
+      fallSpeed: 1.2; 
+      size: 0.08; 
+      color: #eef6ff">
     <a-assets> 
       <asset-item id="rabbit" src="assets/low_poly_rabbit.glb"></asset-item>
       <asset-item id="deer" src="assets/low_poly_deer.glb"></asset-item>
-      <asset-item id="deadTrees" position="26 0.5 -31" src="assets/psx_dead_tree_pack.glb"></asset-item>
+      <asset-item id="deadTrees" rotation="0 45 0" position="-34.93024 0.5 7.79525" src="assets/psx_dead_tree_pack.glb"></asset-item>
       <asset-item id="Trees" src="assets/psx_style_trees.glb"></asset-item>
       <asset-item id="pineTree" src="assets/ps1low_poly_pine_tree.glb"></asset-item>
       <asset-item id="mountain1" src="assets/low_poly_mountain_free.glb"></asset-item>
@@ -39,24 +48,18 @@
       <asset-item id="fognormals" src="assets/fog1.jpg"></asset-item>
       <asset-item id="yurt" src="assets/yurtmodel.glb"></asset-item>
       <asset-item id="campfire" src="assets/campfire.glb"></asset-item>
-      <!-- <asset-item id="theRock" src="assets/rock2.glb"></asset-item> -->
-      <!-- <asset-item id="terrain" src="assets/terrain2.glb"></asset-item> -->
+      <asset-item id="forestTexture" src="assets/wat.jpg"></asset-item>
+      <asset-item id="volvo" src="assets/psx_sedan_car_-_jonniemadeit.glb"></asset-item>
     </a-assets>
     <!-- 3D models -->
-    <!-- <a-entity id="terrain1" rotation="0 90 0" gltf-model="#terrain" scale="5 2 5" position="-41.47039 -1.39073 34.56671" class="collision"> -->
-      <!-- <a-box id="collisionPineTree" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  -->
-    <!-- </a-entity>  -->
     <a-entity id="mountains0" gltf-model="#mountain1" scale="15 15 10" position="-20 0.5 -51.33468" class="collision">
       <!-- <a-box id="collisionPineTree" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  -->
     </a-entity> 
-
-
-    <!-- <a-entity id="handMade" gltf-model="#theRock" scale="1 1 1" position="0 0 0" src="assets/rock_texture.png" material="color: #FFFFFF"> -->
-      <!-- <a-box id="collisionPineTree" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  -->
-    <!-- </a-entity>  -->
-
+    <a-entity id="sedan" scale="1.3 1.3 1.3" rotation="0 -135 0" position="30.5 1.45 10" gltf-model="#volvo">
+      <a-box id="collisionCar" scale="1 1 1" geometry="depth: 1.7; height: 1; width: 3.35" position="0.12 0 0"  visible="false" class="collision"></a-box>
+    </a-entity>
     <a-box id="forest" geometry="width: 1; height: 10; depth: 90" material="color: #FFFFFF" position="45 5 -25" depth="2" width="4" height="3" class="collision" src="assets/les.png"></a-box>
-    <a-box id="forest1" geometry="width: 150; height: 10; depth: 1" material="color: #FFFFFF" position="0 5 -70" depth="2" width="4" height="3" class="collision" src="assets/les.png"></a-box>
+    <a-box id="forest1" geometry="width: 90; height: 10; depth: 1" material="color: #FFFFFF" position="0 5 -70" depth="2" width="4" height="3" class="collision" src="assets/les.png"></a-box>
     <a-box id="forest2" geometry="width: 1; height: 10; depth: 90" material="color: #FFFFFF" position="-45 5 -25" depth="2" width="4" height="3" class="collision" src="assets/les.png"></a-box>
     <a-box id="vid" geometry="width: 1; height: 10; depth: 60" material="color: #FFFFFF" position="45 5 50" depth="2" width="4" height="3" class="collision" src="assets/baikalvid1.png"></a-box>
     <a-box id="vid1" geometry="width: 90; height: 10; depth: 1" material="color: #FFFFFF" position="0 5 80" depth="2" width="4" height="3" class="collision" src="assets/baikalvid1.png"></a-box>
@@ -64,7 +67,9 @@
     <a-entity id="campfire1" gltf-model="#campfire" scale="1 1 1" position="-33.01 0.6 -38" class="collision"></a-entity>
     <a-entity id="yurt1" rotation="0 -15 0" gltf-model="#yurt" scale="1 1 1" position="-39 2.19 -43" class="collision"></a-entity>
     <a-entity id="rockModel1" rotation="0 45 0" scale="10 10 10" position="37.47367 0.76602 -28.27847" gltf-model="#rock1" class="collision"></a-entity>
-    <a-entity id="rockModel2" rotation="0 75 0" scale="3 3 3" position="33.52546 0.3 -36.85693" gltf-model="#rock2" class="collision"></a-entity>
+    <a-entity id="rockModel2" rotation="0 0 0" scale="3 4 4.5" position="33.52546 0.9 19.39714" gltf-model="#rock2" class="collision"></a-entity>
+    <a-entity id="rockModel3" rotation="0 0 0" scale="10 15 15" position="-34.43378 1.98509 21.21769" gltf-model="#rock1" class="collision"></a-entity>
+    <a-entity id="rockModel4" rotation="0 75 0" scale="3 3 3" position="33.52546 0.3 -36.85693" gltf-model="#rock2" class="collision"></a-entity>
 
     <a-entity id="rabbitModel" gltf-model="#rabbit" scale="0.3 0.3 0.3" class="collision"
               path-walker="
@@ -82,11 +87,11 @@
               restTime: 10;"></a-entity>
     
     <!-- Поверхности -->
-    <a-plane id="lakeSurface" geometry="primitive: box; depth: 60; height: 1; width: 150" width="60" height="60"
-             material="color: #9cc6ec; roughness: 0.7; metalness: 1; opacity: 0.6; transparent: true; depthTest: true; side: double; normalMap: #waternormals; normalTextureRepeat: 15 9"
+    <a-plane id="lakeSurface" geometry="primitive: box; depth: 60; height: 1; width: 90" width="60" height="60"
+             material="color: #9cc6ec; roughness: 0.7; metalness: 1; opacity: 0.6; transparent: true; depthTest: true; side: double; normalMap: #waternormals; normalTextureRepeat: 22.5 15"
              position="0 0 50"></a-plane>
-    <a-plane id="groundSurface" scale="1 1 1" geometry="primitive: box; depth: 90; height: 2; width: 150" width="60" height="60"
-             material="color: #e1d1c7; roughness: 0.8; metalness: 0.2; opacity: 1; transparent: true; fog: false; normalMap: #snow; normalTextureRepeat: 20 12"
+    <a-plane id="groundSurface" scale="1 1 1" geometry="primitive: box; depth: 90; height: 2; width: 90" width="60" height="60"
+             material="color: #e1d1c7; roughness: 0.8; metalness: 0.2; opacity: 1; transparent: true; fog: false; normalMap: #snow; normalTextureRepeat: 20 20"
              position="0 -0.5 -25"></a-plane>
 
     <!-- Анимированный туман в горах -->
@@ -116,28 +121,10 @@
               "></a-plane>
     
     <!-- Туман над водой -->
-    <a-plane id="fogWater" visible="true" scale="1 10 0.7" geometry="primitive: box; segmentsWidth: 6; depth: 60; height: 1; width: 150" width="60" height="60"
+    <a-plane id="fogWater" visible="true" scale="1 10 0.7" geometry="primitive: box; segmentsWidth: 6; depth: 60; height: 1; width: 90" width="60" height="60"
              material="color: #dae4eb; roughness: 0.8; metalness: 0.2; opacity: 0.5; transparent: true; visible: true; side: double; depthTest: true; depthWrite: true; fog: true; flatShading: false; normalMap: #fognormals; normalTextureRepeat: 10 1"
              position="0 3.05 50"></a-plane>                                                                     -->
 
-    <!-- Скалы -->
-    <!-- <a-box id="rock0" geometry="height: 20; width: 10; depth: 8" material="color: #7c756e" position="-1.54505 7.7486 -43.4083" depth="2" width="10" height="4" color="#8B7D7B" class="collision">
-      <a-box id="lilrock0" geometry="width: 10; height: 15; depth: 7" material="color: #7c756e" position="-7.20579 -2.11174 2.90727" depth="2" width="10" height="4" color="#8B7D7B" class="collision"></a-box>
-      <a-box id="lilrock1" geometry="depth: 5; height: 10; width: 7" position="0.55012 13.8052 -0.68011" material="color: #7c756e"></a-box>
-      <a-box id="lilrock2" geometry="depth: 6; height: 15; width: 8" position="7.37006 -0.02435 -0.14172" material="color: #7c756e"></a-box>
-      <a-box id="lilrock3" geometry="height: 12" material="color: #7c756e" position="6.7837 -1.1688 4.48303" depth="3" width="5" height="6" class="collision"></a-box>
-      <a-box id="lilrock4" geometry="width: 8; height: 15; depth: 6" material="color: #7c756e" position="0.23492 -1.90914 7.66073" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
-    </a-box>
-
-    <a-cone id="rock1" geometry="radiusBottom: 10; segmentsHeight: 18; height: 30; segmentsRadial: 4" geometry= "segmentsRadial: 4" scale="1 1 0.5" material="color: #7c756e; flatShading: true" position="-12 14 -55" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-cone>
-    <a-cone id="rock2" geometry="radiusBottom: 10; segmentsHeight: 18; height: 21; segmentsRadial: 4" geometry= "segmentsRadial: 4" scale="1 1 0.7" material="color: #7c756e; flatShading: true" position="13.67606 10.81715 -52.3457" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-cone> -->
-
-    <!-- Типа чаща из далека -->
-    <a-box id="miniWood1" geometry="width: 6; height: 2; depth: 16" material="color: #38230f" position="55 2 -3.546" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
-    <a-box id="miniWood2" geometry="width: 6; height: 3; depth: 16" material="color: #38230f" position="-55 2 -3.54579" depth="2" width="4" height="3" color="#6e6e6e" class="collision"></a-box>
-    <a-plane id="bigWood1" position="55 5 -3.546" scale="9 3 15" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60" material="color: #273a28; roughness: 0.8; metalness: 0.2"></a-plane>
-    <a-plane id="bigWood2" position="-55 5 -3.546" scale="9 3 15" geometry="primitive: sphere; segmentsWidth: 6; segmentsHeight: 6" width="60" height="60" material="color: #273a28; roughness: 0.8; metalness: 0.2; visible: true"></a-plane>
-    
     <!-- Деревья -->
     <a-entity id="deadTrees" rotation="0 -25 0" gltf-model="#deadTrees" scale=".6 .6 .6" position="22 0.5 -29">
       <a-box id="collisionTree1" geometry="depth: 2; height: 7; width: 2" position="0 3 -3.75"  visible="false" class="collision"></a-box>
@@ -146,6 +133,9 @@
       <a-box id="collisionTree4" geometry="depth: 2.5; height: 7; width: 2.5" position="7.16 3 7.1" visible="false" class="collision"></a-box> 
       <a-box id="collisionTree5" geometry="depth: 2; height: 7; width: 2" position="-7.8 3 7.45" visible="false" class="collision"></a-box> 
       <a-box id="collisionTree6" geometry="depth: 2; height: 7; width: 2" position="-7.65 3 -3.6" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="deadTrees1" rotation="0 45 0" gltf-model="#deadTrees" scale=".6 .6 .6" position="-36 0.5 7.5">
+      <a-box id="collisionTree7" geometry="depth: 2.5; height: 7; width: 2.5" position="7.16 3 7.1" visible="false" class="collision"></a-box>  
     </a-entity>
     <a-entity id="trees0" rotation="0 -45 0" gltf-model="#Trees" scale="1 1 1" position="-10.24596 0.2 -25.10024">
       <a-box id="collisionTrees1" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
@@ -159,7 +149,12 @@
       <a-box id="collisionTrees5" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
       <a-box id="collisionTrees6" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
     </a-entity>
-    <a-entity id="trees3" rotation="0 15 0" gltf-model="#Trees" scale="1 1 1" position="7.52871 0.2 -23.17501">
+    <a-entity id="trees3" rotation="0 -45 0" gltf-model="#Trees" scale="1 1 1" position="-28.95549 0.2 -35.15779">
+      <a-box id="collisionTrees7" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
+      <a-box id="collisionTrees8" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
+    </a-entity>
+    <a-entity id="trees4" rotation="0 -45 0" gltf-model="#Trees" scale="1 1 1" position="35.53058 0.2 -17.69682"></a-entity>
+    <a-entity id="trees5" rotation="0 15 0" gltf-model="#Trees" scale="1 1 1" position="7.52871 0.2 -27.31901">
       <a-box id="collisionTrees7" position="0 3 0" depth="1" height="7" width="1" visible="false" class="collision"></a-box>
       <a-box id="collisionTrees8" position="0 3 -2.8" depth="1" height="7" width="1" visible="false" class="collision"></a-box>  
     </a-entity>
@@ -177,26 +172,26 @@
     </a-entity>
 
     <!-- Деревья за стеной коллизии -->
-    <a-entity id="treeTrunk1" gltf-model="#pineTree" position="-33.7951 .6 -24.09229" class="collision"></a-entity>
-    <a-entity id="treeTrunk2" gltf-model="#pineTree" position="-31.53043 .6 -20.15475" class="collision"></a-entity>
+    <a-entity id="treeTrunk1" gltf-model="#pineTree" position="-33.7951 .6 -24.09229"></a-entity>
+    <a-entity id="treeTrunk2" gltf-model="#pineTree" position="-31.53043 .6 -20.15475"></a-entity>
     <a-entity id="treeTrunk3" rotation="0 135 0" gltf-model="#Trees" position="-31.85847 0.2 -30.51229" class="collision"></a-entity>
-    <a-entity id="treeTrunk4" gltf-model="#pineTree" position="33.84336 .6 -22.3125" class="collision"></a-entity>
-    <a-entity id="treeTrunk5" gltf-model="#forestTree" position="-31.11101 0.6 -13.59319" class="collision"></a-entity>
-    <a-entity id="treeTrunk6" gltf-model="#pineTree" position="-36.25912 .6 -17.61712" class="collision"></a-entity>
-    <a-entity id="treeTrunk7" rotation="0 -45 0" gltf-model="#Trees" position="-34.50958 0.2 -14.75395" class="collision"></a-entity>
-    <a-entity id="treeTrunk8" gltf-model="#pineTree" position="33.83828 .6 -13.5815" class="collision"></a-entity>
-    <a-entity id="treeTrunk9" gltf-model="#pineTree" position="30.43675 .6 -8.63877" class="collision"></a-entity>
-    <a-entity id="treeTrunk10" gltf-model="#forestTree" position="35.7769 0.6 -7.49033" class="collision"></a-entity>
-    <a-entity id="treeTrunk11" gltf-model="#pineTree" position="-35.77337 .6 -11.43092" class="collision"></a-entity>
-    <a-entity id="treeTrunk12" gltf-model="#pineTree" position="-32.86983 .6 -10.81331" class="collision"></a-entity>
-    <a-entity id="treeTrunk13" rotation="0 105 0" gltf-model="#Trees" position="33.50978 0.2 1.23874" class="collision"></a-entity>
-    <a-entity id="treeTrunk14" gltf-model="#pineTree" position="31.09125 .6 -13.51645" class="collision"></a-entity>
-    <a-entity id="treeTrunk15" rotation="0 0 0" gltf-model="#pineTree" position="30.5397 1 -3.05459" class="collision"></a-entity>
-    <a-entity id="treeTrunk16" gltf-model="#pineTree" position="-36.7062 .6 -6.87187" class="collision"></a-entity>
-    <a-entity id="treeTrunk17" gltf-model="#forestTree" position="-32.95236 0.6 -5.96113" class="collision"></a-entity>
-    <a-entity id="treeTrunk18" gltf-model="#pineTree" position="-35.27205 .6 -1.5109" class="collision"></a-entity>
-    <a-entity id="treeTrunk19" rotation="0 45 0" gltf-model="#Trees" position="35.54435 0.2 -3.73261" class="collision"></a-entity>
-    <a-entity id="treeTrunk20" gltf-model="#forestTree" position="30.97864 0.6 -18.40335" class="collision"></a-entity>
+    <a-entity id="treeTrunk4" gltf-model="#pineTree" position="33.84336 .6 -22.3125"></a-entity>
+    <a-entity id="treeTrunk5" gltf-model="#forestTree" position="-31.11101 0.6 -13.59319"></a-entity>
+    <a-entity id="treeTrunk6" gltf-model="#pineTree" position="-36.25912 .6 -17.61712" ></a-entity>
+    <a-entity id="treeTrunk7" rotation="0 -45 0" gltf-model="#Trees" position="-34.50958 0.2 -14.75395"></a-entity>
+    <a-entity id="treeTrunk8" gltf-model="#pineTree" position="33.83828 .6 -13.5815"></a-entity>
+    <a-entity id="treeTrunk9" gltf-model="#pineTree" position="30.43675 .6 -8.63877"></a-entity>
+    <a-entity id="treeTrunk10" gltf-model="#forestTree" position="35.7769 0.6 -7.49033"></a-entity>
+    <a-entity id="treeTrunk11" gltf-model="#pineTree" position="-35.77337 .6 -11.43092"></a-entity>
+    <a-entity id="treeTrunk12" gltf-model="#pineTree" position="-32.86983 .6 -10.81331"></a-entity>
+    <a-entity id="treeTrunk13" rotation="0 105 0" gltf-model="#Trees" position="33.50978 0.2 1.23874"></a-entity>
+    <a-entity id="treeTrunk14" gltf-model="#pineTree" position="31.09125 .6 -13.51645"></a-entity>
+    <a-entity id="treeTrunk15" rotation="0 0 0" gltf-model="#pineTree" position="30.5397 1 -3.05459"></a-entity>
+    <a-entity id="treeTrunk16" gltf-model="#pineTree" position="-36.7062 .6 -6.87187"></a-entity>
+    <a-entity id="treeTrunk17" gltf-model="#forestTree" position="-32.95236 0.6 -5.96113"></a-entity>
+    <a-entity id="treeTrunk18" gltf-model="#pineTree" position="-35.27205 .6 -1.5109"></a-entity>
+    <a-entity id="treeTrunk19" rotation="0 45 0" gltf-model="#Trees" position="35.54435 0.2 -3.73261"></a-entity>
+    <a-entity id="treeTrunk20" gltf-model="#forestTree" position="30.97864 0.6 -18.40335"></a-entity>
 
     <!-- Кубы коллизии/границы -->
      <a-box id="cllsnCube0" geometry="height: 5; width: 1; depth: 100" position="30 3 7.66307" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
@@ -205,9 +200,6 @@
      <a-box id="cllsnCube3" geometry="height: 5; width: 1; depth: 105" position="-30 3 6.05835" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
      <a-box id="cllsnCube4" geometry="height: 5; width: 60; depth: 1" position="0 3 58.07577" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
 
-     <!-- <a-box id="cllsnCube5" geometry="height: 5; width: 10; depth: 8" position="-1.54505 17.31806 -27.86194" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube6" geometry="height: 5; width: 10; depth: 8" position="-1.54505 18.45354 -14.39617" depth="2" width="10" height="4" visible="false" class="collision"></a-box>
-     <a-box id="cllsnCube7" geometry="height: 5; width: 10; depth: 8" position="-1.54505 19.92326 -1.86539" depth="2" width="10" height="4" visible="false" class="collision"></a-box> -->
     <!-- Камера -->
     <a-entity id="rig" position="0 1.7 0">
       <a-entity id="playerCam"
